@@ -1,6 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import api from "../helpers/api";
 
 const ItemNavigationPanel = () => {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        if(items.length === 0)
+            fetchItems();
+    }, []);
+
+    const fetchItems = () =>{
+        api.Items.get().then(items => {
+            setItems(items);
+        });
+    };
 
     return(
         <>
