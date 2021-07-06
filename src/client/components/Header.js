@@ -1,8 +1,23 @@
 import React from 'react';
 
-const Header = ({itemCount}) => {
+const Header = ({itemCount, dietaries}) => {
 
-    return(
+    const getDietarySpan = (key,value) => {
+        return (
+            <><b>{value}x</b> <span className="dietary" key={key}>{key}</span></>
+        );
+    };
+
+    const renderDietaries = () => {
+        const dietariesView = [];
+        dietaries.forEach((value, key) => {
+            if(value > 0)
+                dietariesView.push(getDietarySpan(key, value));
+        });
+        return dietariesView;
+    }
+
+    return (
         <>
             <div className="container">
                 <div className="row">
@@ -10,9 +25,7 @@ const Header = ({itemCount}) => {
                         <span>{itemCount} items</span>
                     </div>
                     <div className="col-6 menu-summary-right">
-                        6x <span className="dietary">ve</span>
-                        4x <span className="dietary">v</span>
-                        12x <span className="dietary">n!</span>
+                        {renderDietaries()}
                     </div>
                 </div>
             </div>
