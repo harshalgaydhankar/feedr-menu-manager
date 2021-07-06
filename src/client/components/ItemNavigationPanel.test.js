@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, screen} from '@testing-library/react'
+import {act, render, screen} from '@testing-library/react'
 import ItemNavigationPanel from './ItemNavigationPanel'
 import api from '../helpers/api';
 
@@ -15,6 +15,7 @@ jest.mock('../helpers/api', () => {
 describe('ItemNavigationPanel tests', () => {
 
     beforeEach(() => {
+        jest.useFakeTimers();
         api.Items.get.mockReturnValueOnce(
             Promise.resolve({
                 items: [
@@ -35,6 +36,7 @@ describe('ItemNavigationPanel tests', () => {
 
     afterEach(() => {
         jest.clearAllMocks();
+        jest.useRealTimers();
     });
 
     it('renders a input control', () => {
@@ -42,8 +44,13 @@ describe('ItemNavigationPanel tests', () => {
         expect(screen.getByPlaceholderText('Name')).toBeInTheDocument();
     })
 
-    it('renders a navigation list of items', () => {
+    it('renders a navigation list of items', async () => {
+
         const component = render(<ItemNavigationPanel/>);
+        jest.advanceTimersByTime(1000)
+        expect(await screen.findByText('Dark Chocolate Brownie')).toBeInTheDocument()
+        expect(await screen.findByText('Mangajo Pomegranate')).toBeInTheDocument()
+
         expect(component.container.querySelector("ul")).toBeInTheDocument();
         expect(api.Items.get).toHaveBeenCalledTimes(1);
     })
