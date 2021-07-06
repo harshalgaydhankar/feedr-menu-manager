@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
+import './app.css';
 
-export default () => (
+const App = () => (
   <div className="wrapper">
-    <div className="menu-summary">
+    <div className="menu-summary" data-testid="header">
       <div className="container">
         <div className="row">
           <div className="col-6 menu-summary-left">
@@ -19,7 +19,7 @@ export default () => (
     </div>
     <div className="container menu-builder">
       <div className="row">
-        <div className="col-4">
+        <div className="col-4" data-testid="itemNavigationPanel">
           <div className="filters">
             <input className="form-control" placeholder="Name" />
           </div>
@@ -82,7 +82,7 @@ export default () => (
             </li>
           </ul>
         </div>
-        <div className="col-8">
+        <div className="col-8" data-testid="itemPreviewPanel">
           <h2>Menu preview</h2>
           <ul className="menu-preview">
             <li className="item">
@@ -127,3 +127,5 @@ export default () => (
     </div>
   </div>
 );
+
+export default App;
