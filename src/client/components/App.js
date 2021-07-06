@@ -2,6 +2,7 @@ import React from 'react';
 import './app.css';
 import Header from "./Header";
 import ItemNavigationPanel from "./ItemNavigationPanel";
+import ItemPreviewPanel from "./ItemPreviewPanel";
 
 const App = () => (
     <div className="wrapper">
@@ -14,45 +15,7 @@ const App = () => (
                     <ItemNavigationPanel/>
                 </div>
                 <div className="col-8" data-testid="itemPreviewPanel">
-                    <h2>Menu preview</h2>
-                    <ul className="menu-preview">
-                        <li className="item">
-                            <h2>Dummy item</h2>
-                            <p>
-                                <span className="dietary">ve</span>
-                                <span className="dietary">v</span>
-                                <span className="dietary">n!</span>
-                            </p>
-                            <button className="remove-item">x</button>
-                        </li>
-                        <li className="item">
-                            <h2>Dummy item</h2>
-                            <p>
-                                <span className="dietary">ve</span>
-                                <span className="dietary">v</span>
-                                <span className="dietary">n!</span>
-                            </p>
-                            <button className="remove-item">x</button>
-                        </li>
-                        <li className="item">
-                            <h2>Dummy item</h2>
-                            <p>
-                                <span className="dietary">ve</span>
-                                <span className="dietary">v</span>
-                                <span className="dietary">n!</span>
-                            </p>
-                            <button className="remove-item">x</button>
-                        </li>
-                        <li className="item">
-                            <h2>Dummy item</h2>
-                            <p>
-                                <span className="dietary">ve</span>
-                                <span className="dietary">v</span>
-                                <span className="dietary">n!</span>
-                            </p>
-                            <button className="remove-item">x</button>
-                        </li>
-                    </ul>
+                    <ItemPreviewPanel/>
                 </div>
             </div>
         </div>
