@@ -15,7 +15,7 @@ const App = () => (
                     <ItemNavigationPanel/>
                 </div>
                 <div className="col-8" data-testid="itemPreviewPanel">
-                    <ItemPreviewPanel/>
+                    <ItemPreviewPanel selectedItems={[]}/>
                 </div>
             </div>
         </div>
