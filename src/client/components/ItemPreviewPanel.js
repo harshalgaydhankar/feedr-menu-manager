@@ -1,11 +1,12 @@
 import React from 'react';
 import ItemPreview from "./ItemPreview";
 
-const ItemPreviewPanel = ({selectedItems}) => {
+const ItemPreviewPanel = ({selectedItems, removeItem}) => {
+
 
     const getItemPreview = (item) => {
         return (
-            <ItemPreview item={item}/>
+            <ItemPreview item={item} closePreview={ (id) => removeItem(id) }/>
         )
     };
 

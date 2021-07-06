@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ItemPreview = ({item}) => {
+const ItemPreview = ({item, closePreview}) => {
 
     const getDietarySpan = (dietary, index) => {
         return (
@@ -14,7 +14,7 @@ const ItemPreview = ({item}) => {
                 <p>
                     {item.dietaries.map((dietary, index) => getDietarySpan(dietary, index))}
                 </p>
-                <button className="remove-item">x</button>
+                <button className="remove-item" onClick={()=> closePreview(item.id)}>x</button>
             </li>
         </>
     );
