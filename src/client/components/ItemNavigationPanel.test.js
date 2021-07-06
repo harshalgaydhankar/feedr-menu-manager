@@ -47,10 +47,9 @@ describe('ItemNavigationPanel tests', () => {
     it('renders a navigation list of items', async () => {
 
         const component = render(<ItemNavigationPanel/>);
-        jest.advanceTimersByTime(1000)
+        jest.advanceTimersByTime(1000);
         expect(await screen.findByText('Dark Chocolate Brownie')).toBeInTheDocument()
         expect(await screen.findByText('Mangajo Pomegranate')).toBeInTheDocument()
-
         expect(component.container.querySelector("ul")).toBeInTheDocument();
         expect(api.Items.get).toHaveBeenCalledTimes(1);
     })

@@ -15,7 +15,11 @@ const ItemNavigationPanel = () => {
         });
     };
 
-    const getDietarySpan =(dietary,index) => {
+    const addItemToPreviewPanel = (item) => {
+        console.log(item);
+    };
+
+    const getDietarySpan = (dietary, index) => {
         return (
             <span className="dietary" key={index}>{dietary}</span>
         );
@@ -23,12 +27,14 @@ const ItemNavigationPanel = () => {
 
     const getListItem = item => {
         return (
-            <li className="item" key={item.id}>
-                <h2>{item.name}</h2>
-                <p>
-                    {item.dietaries.map((dietary, index) => getDietarySpan(dietary,index))}
-                </p>
-            </li>
+            <a key={item.id} href="#" onClick={ () => addItemToPreviewPanel(item)}>
+                <li className="item" key={item.id}>
+                    <h2>{item.name}</h2>
+                    <p>
+                        {item.dietaries.map((dietary, index) => getDietarySpan(dietary, index))}
+                    </p>
+                </li>
+            </a>
         );
     };
 
