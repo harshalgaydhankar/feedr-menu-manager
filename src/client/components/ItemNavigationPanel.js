@@ -15,9 +15,9 @@ const ItemNavigationPanel = () => {
         });
     };
 
-    const getDietarySpan =(dietary) => {
+    const getDietarySpan =(dietary,index) => {
         return (
-            <span className="dietary">{dietary}</span>
+            <span className="dietary" key={index}>{dietary}</span>
         );
     };
 
@@ -26,7 +26,7 @@ const ItemNavigationPanel = () => {
             <li className="item" key={item.id}>
                 <h2>{item.name}</h2>
                 <p>
-                    {item.dietaries.map(dietary => getDietarySpan(dietary))}
+                    {item.dietaries.map((dietary, index) => getDietarySpan(dietary,index))}
                 </p>
             </li>
         );
