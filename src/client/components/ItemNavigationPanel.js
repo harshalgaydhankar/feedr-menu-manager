@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import api from "../helpers/api";
 
-const ItemNavigationPanel = () => {
+const ItemNavigationPanel = ({addToSelectedItems}) => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -15,10 +15,6 @@ const ItemNavigationPanel = () => {
         });
     };
 
-    const addItemToPreviewPanel = (item) => {
-        console.log(item);
-    };
-
     const getDietarySpan = (dietary, index) => {
         return (
             <span className="dietary" key={index}>{dietary}</span>
@@ -27,7 +23,7 @@ const ItemNavigationPanel = () => {
 
     const getListItem = item => {
         return (
-            <a key={item.id} href="#" onClick={ () => addItemToPreviewPanel(item)}>
+            <a key={item.id} href="#" onClick={ () => addToSelectedItems(item)}>
                 <li className="item" key={item.id}>
                     <h2>{item.name}</h2>
                     <p>

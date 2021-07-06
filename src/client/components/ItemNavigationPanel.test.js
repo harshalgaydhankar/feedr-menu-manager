@@ -1,5 +1,5 @@
 import React from 'react'
-import {act, render, screen} from '@testing-library/react'
+import {act, fireEvent, render, screen} from '@testing-library/react'
 import ItemNavigationPanel from './ItemNavigationPanel'
 import api from '../helpers/api';
 
@@ -52,5 +52,21 @@ describe('ItemNavigationPanel tests', () => {
         expect(await screen.findByText('Mangajo Pomegranate')).toBeInTheDocument();
         expect(component.container.querySelector("ul")).toBeInTheDocument();
         expect(api.Items.get).toHaveBeenCalledTimes(1);
+    })
+
+    it('adds item to preview panel on click of item', async () => {
+        const props = {
+            addToSelectedItems: jest.fn()
+        };
+        render(<ItemNavigationPanel {...props}/>);
+        jest.advanceTimersByTime(1000);
+        const item = await screen.findByText('Dark Chocolate Brownie');
+        fireEvent.click(item);
+        expect(props.addToSelectedItems).toHaveBeenCalledTimes(1);
+        expect(props.addToSelectedItems).toHaveBeenCalledWith({
+            id: 10018,
+            name: 'Dark Chocolate Brownie',
+            dietaries: ['v', 'gf'],
+        });
     })
 })
