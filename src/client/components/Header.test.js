@@ -5,8 +5,8 @@ import Header from './Header'
 describe('Header tests', () => {
 
     it('renders a message', () => {
-        render(<Header />);
-        expect(screen.getByText('6 items')).toBeInTheDocument();
+        render(<Header itemCount={9}/>);
+        expect(screen.getByText('9 items')).toBeInTheDocument();
     })
 
 })

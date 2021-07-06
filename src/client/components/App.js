@@ -21,7 +21,7 @@ const App = () => {
     return (
         <div className="wrapper">
             <div className="menu-summary" data-testid="header">
-                <Header/>
+                <Header itemCount={selectedItems.length}/>
             </div>
             <div className="container menu-builder">
                 <div className="row">
