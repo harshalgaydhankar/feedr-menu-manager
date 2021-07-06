@@ -5,79 +5,43 @@ const ItemNavigationPanel = () => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        if(items.length === 0)
+        if (items.length === 0)
             fetchItems();
     }, []);
 
-    const fetchItems = () =>{
-        api.Items.get().then(items => {
-            setItems(items);
+    const fetchItems = () => {
+        api.Items.get().then(data => {
+            setItems(data.items);
         });
     };
 
-    return(
+    const getDietarySpan =(dietary) => {
+        return (
+            <span className="dietary">{dietary}</span>
+        );
+    };
+
+    const getListItem = item => {
+        return (
+            <li className="item" key={item.id}>
+                <h2>{item.name}</h2>
+                <p>
+                    {item.dietaries.map(dietary => getDietarySpan(dietary))}
+                </p>
+            </li>
+        );
+    };
+
+    const getNavigationList = () => {
+        return <ul>{items.map(item => getListItem(item))}</ul>;
+    };
+
+    return (
         <>
             <div className="filters">
-                <input className="form-control" placeholder="Name" />
+                <input className="form-control" placeholder="Name"/>
             </div>
-            <ul className="item-picker">
-                <li className="item">
-                    <h2>Dummy item</h2>
-                    <p>
-                        <span className="dietary">ve</span>
-                        <span className="dietary">v</span>
-                        <span className="dietary">n!</span>
-                    </p>
-                </li>
-                <li className="item">
-                    <h2>Dummy item</h2>
-                    <p>
-                        <span className="dietary">ve</span>
-                        <span className="dietary">v</span>
-                        <span className="dietary">n!</span>
-                    </p>
-                </li>
-                <li className="item">
-                    <h2>Dummy item</h2>
-                    <p>
-                        <span className="dietary">ve</span>
-                        <span className="dietary">v</span>
-                        <span className="dietary">n!</span>
-                    </p>
-                </li>
-                <li className="item">
-                    <h2>Dummy item</h2>
-                    <p>
-                        <span className="dietary">ve</span>
-                        <span className="dietary">v</span>
-                        <span className="dietary">n!</span>
-                    </p>
-                </li>
-                <li className="item">
-                    <h2>Dummy item</h2>
-                    <p>
-                        <span className="dietary">ve</span>
-                        <span className="dietary">v</span>
-                        <span className="dietary">n!</span>
-                    </p>
-                </li>
-                <li className="item">
-                    <h2>Dummy item</h2>
-                    <p>
-                        <span className="dietary">ve</span>
-                        <span className="dietary">v</span>
-                        <span className="dietary">n!</span>
-                    </p>
-                </li>
-                <li className="item">
-                    <h2>Dummy item</h2>
-                    <p>
-                        <span className="dietary">ve</span>
-                        <span className="dietary">v</span>
-                        <span className="dietary">n!</span>
-                    </p>
-                </li>
-            </ul>
+            {getNavigationList()}
         </>
     );
 };
