@@ -5,7 +5,8 @@ const itemService = require('./services/itemService');
 
 jest.mock('./services/itemService', () => {
     return {
-        getItems: jest.fn()
+        getItems: jest.fn(),
+        searchItems: jest.fn()
     };
 });
 
@@ -41,6 +42,27 @@ describe('Get Items API Test', () => {
         ];
         itemService.getItems.mockReturnValueOnce(items);
         const response =  await request(server).get('/api/items');
+        expect(response.text).toEqual(JSON.stringify({ items }));
+    });
+
+    it('should return list of all items with searchString BRoccoLi', async () => {
+        let items = [
+            {
+                "id": 1001,
+                "name": "Kale Caesar Pasta, Turmeric Satay Broccoli & Lemon Cashew Greens",
+                "dietaries": ["v", "ve", "df", "gf", "n!"]
+            }, {
+                "id": 1004,
+                "name": "Hake & Smoky Chickpeas, Herby Potatoes & Turmeric Satay Broccoli",
+                "dietaries": ["df", "gf", "rsf", "n!"]
+            }, {
+                "id": 1007,
+                "name": "Cuban Beef, Herby Potatoes & Turmeric Satay Broccoli",
+                "dietaries": ["gf", "df", "n!"]
+            }
+        ];
+        itemService.searchItems.mockReturnValueOnce(items);
+        const response =  await request(server).get('/api/items/search/BRoccoLi');
         expect(response.text).toEqual(JSON.stringify({ items }));
     });
 
