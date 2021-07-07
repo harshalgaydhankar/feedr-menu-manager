@@ -38,6 +38,12 @@ describe('App tests', () => {
         expect(api.Items.get).toBeCalled();
     })
 
+    it('renders Item Filter Panel', () => {
+        render(<App />);
+        expect(screen.getByTestId('itemFilterPanel')).toBeInTheDocument();
+        expect(api.Items.get).toBeCalled();
+    })
+
     it('renders Item Navigation Panel', () => {
         render(<App />);
         expect(screen.getByTestId('itemNavigationPanel')).toBeInTheDocument();

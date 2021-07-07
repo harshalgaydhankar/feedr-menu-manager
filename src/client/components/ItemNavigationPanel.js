@@ -40,9 +40,6 @@ const ItemNavigationPanel = ({addToSelectedItems, items}) => {
 
     return (
         <>
-            <div className="filters">
-                <input className="form-control" placeholder="Name"/>
-            </div>
             {getNavigationList()}
         </>
     );

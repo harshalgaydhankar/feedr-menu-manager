@@ -5,6 +5,7 @@ import ItemNavigationPanel from "./ItemNavigationPanel";
 import ItemPreviewPanel from "./ItemPreviewPanel";
 import updateDietaries from "../helpers/dietaries";
 import api from "../helpers/api";
+import ItemFilterPanel from "./ItemFillterPanel";
 
 const App = () => {
 
@@ -45,6 +46,9 @@ const App = () => {
             <div className="container menu-builder">
                 <div className="row">
                     <div className="col-4" data-testid="itemNavigationPanel">
+                        <div className="filters" data-testid="itemFilterPanel">
+                            <ItemFilterPanel/>
+                        </div>
                         <ItemNavigationPanel addToSelectedItems={addToSelectedItems} items={items}/>
                     </div>
                     <div className="col-8" data-testid="itemPreviewPanel">

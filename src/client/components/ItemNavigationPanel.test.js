@@ -19,11 +19,6 @@ describe('ItemNavigationPanel tests', () => {
         addToSelectedItems: jest.fn()
     }
 
-    it('renders a input control', () => {
-        render(<ItemNavigationPanel {...props}/>);
-        expect(screen.getByPlaceholderText('Name')).toBeInTheDocument();
-    })
-
     it('renders a navigation list of items', () => {
 
         const component = render(<ItemNavigationPanel {...props}/>);
