@@ -33,17 +33,20 @@ describe('App tests', () => {
     });
 
     it('renders header', () => {
-        render(<App />)
-        expect(screen.getByTestId('header')).toBeInTheDocument()
+        render(<App />);
+        expect(screen.getByTestId('header')).toBeInTheDocument();
+        expect(api.Items.get).toBeCalled();
     })
 
     it('renders Item Navigation Panel', () => {
-        render(<App />)
-        expect(screen.getByTestId('itemNavigationPanel')).toBeInTheDocument()
+        render(<App />);
+        expect(screen.getByTestId('itemNavigationPanel')).toBeInTheDocument();
+        expect(api.Items.get).toBeCalled();
     })
 
     it('renders Item Preview Panel', () => {
-        render(<App />)
-        expect(screen.getByTestId('itemPreviewPanel')).toBeInTheDocument()
+        render(<App />);
+        expect(screen.getByTestId('itemPreviewPanel')).toBeInTheDocument();
+        expect(api.Items.get).toBeCalled();
     })
 })

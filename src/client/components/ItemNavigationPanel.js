@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import api from "../helpers/api";
 
-const ItemNavigationPanel = ({addToSelectedItems}) => {
-    const [items, setItems] = useState([]);
-
-    useEffect(() => {
-        if (items.length === 0)
-            fetchItems();
-    }, []);
-
-    const fetchItems = () => {
-        api.Items.get().then(data => {
-            setItems(data.items);
-        });
-    };
+const ItemNavigationPanel = ({addToSelectedItems, items}) => {
+    // const [items, setItems] = useState([]);
+    //
+    // useEffect(() => {
+    //     if (items.length === 0)
+    //         fetchItems();
+    // }, []);
+    //
+    // const fetchItems = () => {
+    //     api.Items.get().then(data => {
+    //         setItems(data.items);
+    //     });
+    // };
 
     const getDietarySpan = (dietary, index) => {
         return (

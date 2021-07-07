@@ -1,66 +1,41 @@
 import React from 'react'
 import {act, fireEvent, render, screen} from '@testing-library/react'
 import ItemNavigationPanel from './ItemNavigationPanel'
-import api from '../helpers/api';
-
-jest.mock('../helpers/api', () => {
-    return {
-        Items: {
-            get: jest.fn(),
-        },
-    };
-});
-
 
 describe('ItemNavigationPanel tests', () => {
-
-    beforeEach(() => {
-        jest.useFakeTimers();
-        api.Items.get.mockReturnValueOnce(
-            Promise.resolve({
-                items: [
-                    {
-                        id: 10018,
-                        name: 'Dark Chocolate Brownie',
-                        dietaries: ['v', 'gf'],
-                    },
-                    {
-                        id: 10019,
-                        name: 'Mangajo Pomegranate',
-                        dietaries: ['ve', 'df', 'gf'],
-                    }
-                ]
-            }),
-        );
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks();
-        jest.useRealTimers();
-    });
+    const props = {
+        items: [
+            {
+                id: 10018,
+                name: 'Dark Chocolate Brownie',
+                dietaries: ['v', 'gf'],
+            },
+            {
+                id: 10019,
+                name: 'Mangajo Pomegranate',
+                dietaries: ['ve', 'df', 'gf'],
+            }
+        ],
+        addToSelectedItems: jest.fn()
+    }
 
     it('renders a input control', () => {
-        render(<ItemNavigationPanel/>);
+        render(<ItemNavigationPanel {...props}/>);
         expect(screen.getByPlaceholderText('Name')).toBeInTheDocument();
     })
 
-    it('renders a navigation list of items', async () => {
+    it('renders a navigation list of items', () => {
 
-        const component = render(<ItemNavigationPanel/>);
-        jest.advanceTimersByTime(1000);
-        expect(await screen.findByText('Dark Chocolate Brownie')).toBeInTheDocument();
-        expect(await screen.findByText('Mangajo Pomegranate')).toBeInTheDocument();
+        const component = render(<ItemNavigationPanel {...props}/>);
+        expect(screen.getByText('Dark Chocolate Brownie')).toBeInTheDocument();
+        expect(screen.getByText('Mangajo Pomegranate')).toBeInTheDocument();
         expect(component.container.querySelector("ul")).toBeInTheDocument();
-        expect(api.Items.get).toHaveBeenCalledTimes(1);
     })
 
     it('adds item to preview panel on click of item', async () => {
-        const props = {
-            addToSelectedItems: jest.fn()
-        };
+
         render(<ItemNavigationPanel {...props}/>);
-        jest.advanceTimersByTime(1000);
-        const item = await screen.findByText('Dark Chocolate Brownie');
+        const item = await screen.getByText('Dark Chocolate Brownie');
         fireEvent.click(item);
         expect(props.addToSelectedItems).toHaveBeenCalledTimes(1);
         expect(props.addToSelectedItems).toHaveBeenCalledWith({
