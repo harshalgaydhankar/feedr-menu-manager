@@ -7,27 +7,33 @@ jest.mock('../helpers/api', () => {
     return {
         Items: {
             get: jest.fn(),
+            search: jest.fn()
         },
     };
 });
 
 describe('App tests', () => {
-
+    const items = [
+        {
+            id: 10018,
+            name: 'Dark Chocolate Brownie',
+            dietaries: ['v', 'gf'],
+        },
+        {
+            id: 10019,
+            name: 'Mangajo Pomegranate',
+            dietaries: ['ve', 'df', 'gf'],
+        }
+    ];
     beforeEach(() => {
         api.Items.get.mockReturnValueOnce(
             Promise.resolve({
-                items: [
-                    {
-                        id: 10018,
-                        name: 'Dark Chocolate Brownie',
-                        dietaries: ['v', 'gf'],
-                    },
-                    {
-                        id: 10019,
-                        name: 'Mangajo Pomegranate',
-                        dietaries: ['ve', 'df', 'gf'],
-                    }
-                ]
+                items
+            }),
+        );
+        api.Items.search.mockReturnValueOnce(
+            Promise.resolve({
+                items
             }),
         );
     });

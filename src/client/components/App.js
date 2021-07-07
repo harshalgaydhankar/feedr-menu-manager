@@ -24,6 +24,14 @@ const App = () => {
         });
     };
 
+    const searchItems = (searchString) => {
+        if(searchString.length > 0){
+            api.Items.search(searchString).then(data => {
+                setItems(data.items);
+            });
+        }
+    };
+
     const removeSelectedItem = (id) => {
         const removedItem = selectedItems.find(item => item.id === id);
         const newSelectedItems = selectedItems.filter((item) => item.id != id);
@@ -37,7 +45,6 @@ const App = () => {
         setDietaries(updateDietaries(dietaries, item.dietaries, 1));
     };
 
-
     return (
         <div className="wrapper">
             <div className="menu-summary" data-testid="header">
@@ -47,7 +54,7 @@ const App = () => {
                 <div className="row">
                     <div className="col-4" data-testid="itemNavigationPanel">
                         <div className="filters" data-testid="itemFilterPanel">
-                            <ItemFilterPanel/>
+                            <ItemFilterPanel searchItems={searchItems}/>
                         </div>
                         <ItemNavigationPanel addToSelectedItems={addToSelectedItems} items={items}/>
                     </div>
