@@ -21,3 +21,15 @@ yarn dev (or npm run dev)
 
 ## Run tests
 yarn test (or npm run test)
+
+# Application Component Structure 
+
+-   Main App (Handles Communication with all child components and also interact with server api)
+    -   Header (shows count of items selected and sum of all selected dietaries)
+    -   ItemNavigationPanel (displays navigation items and provides add item feature)
+    -   ItemFilterPanel (allows user to search items)
+    -   ItemPreviewPanel (previews item added by navigation panel)
+        -   ItemPreview (represents preview of single item with remove option from preview panel)
+    
+Parent->Child communication happens through data flow using props.
+Child->Parent communication happens through event reference using props.
