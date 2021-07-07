@@ -4,14 +4,14 @@ import ItemPreview from "./ItemPreview";
 const ItemPreviewPanel = ({selectedItems, removeItem}) => {
 
 
-    const getItemPreview = (item) => {
+    const getItemPreview = (item, index) => {
         return (
-            <ItemPreview item={item} closePreview={ (id) => removeItem(id) }/>
+            <ItemPreview item={item} index={index} closePreview={ (index) => removeItem(index) }/>
         )
     };
 
     const renderPreviewPanel = () =>{
-        return <ul>{selectedItems.map(item => getItemPreview(item))}</ul>;
+        return <ul>{selectedItems.map((item, index) => getItemPreview(item,index))}</ul>;
     }
 
     return (

@@ -32,9 +32,10 @@ const App = () => {
         }
     };
 
-    const removeSelectedItem = (id) => {
-        const removedItem = selectedItems.find(item => item.id === id);
-        const newSelectedItems = selectedItems.filter((item) => item.id != id);
+    const removeSelectedItem = (index) => {
+        const newSelectedItems = [...selectedItems];
+        const removedItem = newSelectedItems[index];
+        newSelectedItems.splice(index, 1);
         setSelectedItems(newSelectedItems);
         setDietaries(updateDietaries(dietaries, removedItem.dietaries, -1));
     };
