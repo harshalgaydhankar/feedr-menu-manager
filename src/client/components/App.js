@@ -5,7 +5,7 @@ import ItemNavigationPanel from "./ItemNavigationPanel";
 import ItemPreviewPanel from "./ItemPreviewPanel";
 import updateDietaries from "../helpers/dietaries";
 import api from "../helpers/api";
-import ItemFilterPanel from "./ItemFillterPanel";
+import ItemFilterPanel from "./ItemFilterPanel";
 
 const App = () => {
 
