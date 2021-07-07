@@ -8,6 +8,11 @@ const api = {
             return fetch(endPoint)
                 .then(res => res.json());
         },
+        search: (searchString) => {
+            const endPoint = `${SERVICE_BASE_URL}/api/items/search/${searchString}`;
+            return fetch(endPoint)
+                .then(res => res.json());
+        }
     },
 };
 
